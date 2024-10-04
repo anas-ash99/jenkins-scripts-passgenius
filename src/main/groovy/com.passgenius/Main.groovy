@@ -1,5 +1,7 @@
 package com.passgenius
 
 static void main(String[] args) {
-  println "Hello world!"
+
+  def newVersion = VersionUpdater.generateVersion()
+  System.out.println(newVersion)
 }
