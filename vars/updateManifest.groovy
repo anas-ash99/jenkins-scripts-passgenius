@@ -2,7 +2,7 @@
 def call( String deploymentFilePath, String imageTag, String imageTagName, String gitCredentialsUsr, String gitCredentialsPsw, String manifestRepoName = "deployment-manifest-passgenius") {
 
     // Default repository URL
-    def manifestRepoURL = "https://github.com/anas-ash99/${manifestRepoName}"
+    def manifestRepoURL = "https://github.com/${gitCredentialsUsr}/${manifestRepoName}"
 
     bat """
         cd ..  
