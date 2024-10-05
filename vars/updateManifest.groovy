@@ -12,6 +12,7 @@ def call( String deploymentFilePath, String imageTag, String imageTagName, Strin
         git add .
         git commit -m "update tag image by Jenkins to version ${imageTagName}"
         git push https://${gitCredentialsUsr}:${gitCredentialsPsw}@github.com/${gitCredentialsUsr}/${manifestRepoName}.git
+        cd ..  
         rmdir /S /Q ${manifestRepoName}
     """
 
