@@ -1,5 +1,5 @@
 
-def call( String deploymentFilePath, String imageTag, String imageTagName, String gitCredentialsUsr, String gitCredentialsPsw, String manifestRepoName = "deployment-manifest-passgenius") {
+def call( String deploymentFilePath, String imageTag, String imageTagName, String gitCredentialsUsr, String gitCredentialsPsw, String branchName = "develop", String manifestRepoName = "deployment-manifest-passgenius") {
 
     // Default repository URL
     def manifestRepoURL = "https://github.com/${gitCredentialsUsr}/${manifestRepoName}"
@@ -8,6 +8,7 @@ def call( String deploymentFilePath, String imageTag, String imageTagName, Strin
         cd ..  
         git clone ${manifestRepoURL}
         cd ${manifestRepoName}
+        git checkout ${branchName}
         powershell -Command "(Get-Content -Path '${deploymentFilePath}\\deployment.yaml') -replace '${imageTag}:.*', '${imageTag}:${imageTagName}' | Set-Content -Path '${deploymentFilePath}\\deployment.yaml'"
         git add .
         git commit -m "update tag image by Jenkins to version ${imageTagName}"
